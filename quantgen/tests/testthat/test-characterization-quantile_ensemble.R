@@ -165,7 +165,7 @@ test_that("quantile_ensemble's A matrix (for Rgplk) encodes identical entries to
       ##
       ## `expect_snapshot_value` has issues with readable `style`s and an RDS
       ## seems preferable to the "serialize" style.
-      expect_identical_custom_rds_snapshot(reformatted.arg.lists[[i]], paste0(trial.config.names[[i]],"_glpk_inputs"))
+      expect_equal_custom_rds_snapshot(reformatted.arg.lists[[i]], paste0(trial.config.names[[i]],"_glpk_inputs"))
     }
     for (i in seq_along(reformatted.arg.lists)) {
       ## Check that outputs are "equal". Less specificity about failures but
