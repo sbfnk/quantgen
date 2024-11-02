@@ -105,7 +105,7 @@ quantile_ensemble = function(qarr, y, tau, weights=NULL,
   # Add an all 1s matrix to qarr, if we need to
   if (intercept) {
     a = array(NA, dim=c(n,p+1,r))
-    for (k in 1:r) a[,,k] = cbind(rep(1,n), qarr[,,k])
+    for (k in 1:r) a[,,k] = cbind(rep(1,n), `dim<-`(qarr[,,k], apply(qarr, 3, dim)[, 1]))
     qarr = a
     p = p+1
   }
@@ -519,7 +519,7 @@ predict.quantile_ensemble = function(object, newq, s=NULL, sort=TRUE, iso=FALSE,
   # Add an all 1s matrix to newq, if we need to
   if (object$intercept) {
     a = array(NA, dim=c(n0,p+1,r))
-    for (k in 1:r) a[,,k] = cbind(rep(1,n0), newq[,,k])
+    for (k in 1:r) a[,,k] = cbind(rep(1,n0), `dim<-`(newq[,,k], apply(newq, 3, dim)[, 1]))
     newq = a
     p = p+1
   }
